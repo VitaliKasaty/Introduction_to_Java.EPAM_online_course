@@ -47,7 +47,7 @@ public class Decomposition3 {
 		double squareTriangle;
 		double squareHexagon;
 		
-		squareTriangle = 0.5 * Math.pow(a, 2) * Math.sin(Math.toRadians(120));
+		squareTriangle = (Math.pow(a, 2) * Math.sqrt(3)) / 4;
 		squareHexagon = 6 * squareTriangle;
 		
 		return squareHexagon;		
