@@ -40,7 +40,7 @@ public class Decomposition13 {
 		return value;
 	}
 
-	public static boolean isSimpleNumber(int a) { //проестое ли число
+	public static boolean isSimpleNumber(int a) { //простое ли число
 
 		boolean isSimple = true;
 
