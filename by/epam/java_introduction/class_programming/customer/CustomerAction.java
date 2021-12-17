@@ -45,5 +45,6 @@ public class CustomerAction {
 		Stream.of(customers)
 			  .filter(customer -> (customer.getNumberCard() >= startInterval) && (customer.getNumberCard() <= endInterval))
 			  .forEach(System.out::println);
-	}	
+	}
+	
 }
