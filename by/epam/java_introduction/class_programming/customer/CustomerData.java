@@ -12,26 +12,26 @@ import java.util.stream.Stream;
 a) список покупателей в алфавитном порядке;
 b) список покупателей, у которых номер кредитной карточки находится в заданном интервале*/
 
-public class CustomerAction {
+public class CustomerData {
 	
-	public Customer[] createCustomers(){
-		
-		Customer[] customers = new Customer[] {
-				 new Customer("Иванов", "Василий", "Петрович", "Беларусь", 5470874051650597l, 75854654337l),
-				 new Customer("Петров", "Генадий", "Михайлович", "Россия", 7642086375436754l, 58757837883723l),
-				 new Customer("Столбцов", "Виктор", "Сергеевич", "Казахстан", 8574638194829472l, 9457362l),
-				 new Customer("Столбцов", "Андрей", "Антонович", "Казахстан", 4574638194829472l, 987335262l),
-				 new Customer("Синяк", "Виктор", "Сергеевич", "Россия", 8765438192163749l, 938378722l),
-				};
-		
+	private Customer[] customers;
+
+	public CustomerData(Customer[] customers) {
+		this.customers = customers;
+	}
+
+	public Customer[] getCustomers() {
 		return customers;
 	}
-	
+
+	public void setCustomers(Customer[] customers) {
+		this.customers = customers;
+	}	
+
 	public void printCustomers(Customer[] customers) {
 		
 		for (Customer customer : customers) {
-			System.out.println(customer);
-			
+			System.out.println(customer);			
 		}
 	}
 	
@@ -46,5 +46,5 @@ public class CustomerAction {
 			  .filter(customer -> (customer.getNumberCard() >= startInterval) && (customer.getNumberCard() <= endInterval))
 			  .forEach(System.out::println);
 	}
-	
+
 }

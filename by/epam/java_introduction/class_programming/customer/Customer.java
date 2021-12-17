@@ -33,6 +33,7 @@ public class Customer {
 		this.numberBankAccount = numberBankAccount;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", Фамилия: " + surName + ", Имя: " + name + ", Отчество: " + patronymicName
