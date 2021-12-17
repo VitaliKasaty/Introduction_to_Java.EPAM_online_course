@@ -27,5 +27,4 @@ public class Main {
 		customerAction.sortByIntervalNumberCard(costumers, 5000000000000000l, 8000000000000000l);		
 
 	}
-
 }
