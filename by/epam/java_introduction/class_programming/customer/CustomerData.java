@@ -28,20 +28,18 @@ public class CustomerData {
 		this.customers = customers;
 	}	
 
-	public void printCustomers(Customer[] customers) {
+	public void printCustomers() {
 		
-		for (Customer customer : customers) {
-			System.out.println(customer);			
-		}
+		Stream.of(customers).forEach(System.out::println);
 	}
 	
-	public void sortByNames(Customer[] customers) {
+	public void sortByNames() {
 		Arrays.sort(customers, Comparator.comparing(Customer::getSurName)
 							             .thenComparing(Customer::getName)
 							             .thenComparing(Customer::getPatronymicName));
 	}
 	
-	public void sortByIntervalNumberCard(Customer[] customers, long startInterval, long endInterval) {
+	public void sortByIntervalNumberCard(long startInterval, long endInterval) {
 		Stream.of(customers)
 			  .filter(customer -> (customer.getNumberCard() >= startInterval) && (customer.getNumberCard() <= endInterval))
 			  .forEach(System.out::println);

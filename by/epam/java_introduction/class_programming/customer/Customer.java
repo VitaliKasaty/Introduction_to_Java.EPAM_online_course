@@ -36,7 +36,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", Фамилия: " + surName + ", Имя: " + name + ", Отчество: " + patronymicName
+		return "Покупатель [id=" + id + ", Фамилия: " + surName + ", Имя: " + name + ", Отчество: " + patronymicName
 				+ ", адрес = " + adress + ", номер карты: " + numberCard + ", номер банковского счёта: " + numberBankAccount
 				+ "]";
 	}
