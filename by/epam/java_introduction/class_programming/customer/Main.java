@@ -23,8 +23,7 @@ public class Main {
 		CustomerData shop = new CustomerData(customersShop);
 		
 		System.out.println("Сформированный список покупателей магазина:");
-		shop.printCustomers();
-		
+		shop.printCustomers();		
 		
 		System.out.println("\nCписок покупателей в алфавитном порядке:");
 		shop.sortByNames();
