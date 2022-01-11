@@ -16,7 +16,7 @@ public class Main {
 		Date date2 = new Date(17, 3, 2022);
 		Date date3 = new Date(9, 5, 2022);		
 		
-		year2020.addDay(date1, date2, date3);	
+		year2020.addDay(date1, date2, date3);		
 		dateOperation.printCalendar(year2020);
 		dateOperation.dayOff(date1);
 		dateOperation.holiday(date3);	

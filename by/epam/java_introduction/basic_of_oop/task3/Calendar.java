@@ -71,7 +71,7 @@ public class Calendar implements Serializable {
 	public static class Date {
 		
 		private int numOfDay;
-		private int months;
+		private int month;
 		private int year;
 		private boolean worked;	 //простой рабочий день
 		private boolean dayOff;  //обычный выходной, например сб/вс
@@ -87,19 +87,35 @@ public class Calendar implements Serializable {
 			
 		}
 
-		public Date(int numOfDay, int months, int year) {
+		public Date(int numOfDay, int month, int year) { //по умолчанию создаётся простой(рабочий) день
 			
-			this.numOfDay = numOfDay;
-			this.months = months;
-			this.year = year;
+			if(isCorrectDayMonth(numOfDay, month)) {
+				this.numOfDay = numOfDay;
+				this.month = month;
+				this.year = year;				
+			} 
 		}
 
-		public Date(int numOfDay, int months, int year, boolean dayOff, boolean holiday) {			
-			this.numOfDay = numOfDay;
-			this.months = months;
-			this.year = year;
-			this.dayOff = dayOff;
-			this.holiday = holiday;
+		public Date(int numOfDay, int month, int year, boolean dayOff, boolean holiday) {	//с булевскими аргументами создаётся выходной/праздничный день	 	
+			
+			if(isCorrectDayMonth(numOfDay, month)) {				
+				this.numOfDay = numOfDay;
+				this.month = month;
+				this.year = year;
+				this.worked = false;
+				this.dayOff = dayOff;
+				this.holiday = holiday;
+			} 
+		}
+		
+		public boolean isCorrectDayMonth (int numOfDay, int month) {
+			
+			if (numOfDay < 0 || numOfDay > 31 || month < 0 || month > 12) {
+				System.out.println("Неверные значения даты!");
+				return false;
+			} else {
+				return true;
+			}
 		}
 
 		public int getNumOfDay() {
@@ -110,12 +126,12 @@ public class Calendar implements Serializable {
 			this.numOfDay = numOfDay;
 		}
 
-		public int getMonths() {
-			return months;
+		public int getMonth() {
+			return month;
 		}
 
-		public void setMonths(int months) {
-			this.months = months;
+		public void setMonth(int month) {
+			this.month = month;
 		}
 
 		public int getYear() {
@@ -156,7 +172,7 @@ public class Calendar implements Serializable {
 			int result = 1;
 			result = prime * result + (dayOff ? 1231 : 1237);
 			result = prime * result + (holiday ? 1231 : 1237);
-			result = prime * result + months;
+			result = prime * result + month;
 			result = prime * result + numOfDay;
 			result = prime * result + (worked ? 1231 : 1237);
 			result = prime * result + year;
@@ -181,7 +197,7 @@ public class Calendar implements Serializable {
 			if (holiday != other.holiday) {
 				return false;
 			}
-			if (months != other.months) {
+			if (month != other.month) {
 				return false;
 			}
 			if (numOfDay != other.numOfDay) {
@@ -198,7 +214,7 @@ public class Calendar implements Serializable {
 
 		@Override
 		public String toString() {
-			return "Date [numOfDay=" + numOfDay + ", months=" + months + ", year=" + year + ", worked=" + worked
+			return "Date [numOfDay=" + numOfDay + ", month=" + month + ", year=" + year + ", worked=" + worked
 					+ ", dayOff=" + dayOff + ", holiday=" + holiday + "]";
 		}
 		

@@ -19,7 +19,7 @@ public class DateOperation {
 		date.setHoliday(false);
 		date.setDayOff(false);
 	}
-	
+		
 	public void printHolidays(Calendar calendar) {
 		System.out.println("Holidays:");
 		for (Date date : calendar.getCalendar()) {
