@@ -1,0 +1,9 @@
+Pearl GEM 150
+King_Arthur SWORD 95
+Ruby GEM 310
+Fire_protectiv SHIELD 40
+Princess_Anna CROWN 135
+Amber GEM 30
+Destroyer SWORD 60
+Revolver GUN 180
+Hobbits_ring RING 120
