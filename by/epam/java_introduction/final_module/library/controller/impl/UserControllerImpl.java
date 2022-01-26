@@ -20,6 +20,7 @@ public class UserControllerImpl implements UserController{
 		commandName = request.split(" ")[0];
 		login = request.split(" ")[1];
 		password = request.split(" ")[2];
+		
 		switch(commandName) {
 		
 			case "login":				

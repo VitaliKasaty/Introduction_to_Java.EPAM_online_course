@@ -1,6 +1,5 @@
 package by.epam.java_introduction.final_module.library.service.impl;
 
-import java.util.List;
 
 import by.epam.java_introduction.final_module.library.bean.Library;
 import by.epam.java_introduction.final_module.library.dao.DAOProvider;
@@ -9,22 +8,22 @@ import by.epam.java_introduction.final_module.library.service.LibraryService;
 
 public class HomeLibraryServiceImpl implements LibraryService{
 	
-	public static Library library;
+	
 	
 	private final DAOProvider provider = DAOProvider.getInstance();
 
 	@Override
-	public Library loadLibrary() {		
+	public Library getLibrary() {		
 		LibraryDAO libraryDAO = provider.getLibraryDAO();
-		return libraryDAO.loadLibraryFromFile();
+		return libraryDAO.getLibrary();
 	}
 
 	@Override
-	public List<?> getBooks(Library library) {
+	public void setLibrary(Library library) {
+		LibraryDAO libraryDAO = provider.getLibraryDAO();
+		libraryDAO.setLibrary(library);
 		
-		return library.getLibraryBooks();
 	}
-	
 	
 
 }

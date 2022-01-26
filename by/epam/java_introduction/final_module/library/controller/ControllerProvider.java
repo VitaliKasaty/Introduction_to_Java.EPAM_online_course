@@ -1,5 +1,6 @@
 package by.epam.java_introduction.final_module.library.controller;
 
+import by.epam.java_introduction.final_module.library.controller.impl.BookControllerImpl;
 import by.epam.java_introduction.final_module.library.controller.impl.LibraryControllerImpl;
 import by.epam.java_introduction.final_module.library.controller.impl.UserControllerImpl;
 
@@ -9,6 +10,7 @@ public class ControllerProvider {
 	
 	private UserController userController = new UserControllerImpl();
 	private LibraryController libraryController = new LibraryControllerImpl();
+	private BookController bookController = new BookControllerImpl();
 	
 	private ControllerProvider() {
 		
@@ -32,6 +34,14 @@ public class ControllerProvider {
 
 	public static ControllerProvider getInstance() {
 		return instance;
+	}
+
+	public BookController getBookController() {
+		return bookController;
+	}
+
+	public void setBookController(BookController bookController) {
+		this.bookController = bookController;
 	}
 
 	

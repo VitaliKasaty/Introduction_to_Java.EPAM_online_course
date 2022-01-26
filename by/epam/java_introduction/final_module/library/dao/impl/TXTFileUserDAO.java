@@ -76,7 +76,7 @@ public class TXTFileUserDAO implements UserDAO{
 	/*
 	 * Метод регистрации пользователей: 
 	 * 		проверка на свободность логина; 
-	 * 		запись нового пользователя в базу текстового файла пароль шифруется
+	 * 		запись нового пользователя в базу текстового файла, пароль шифруется
 	 */
 	@Override
 	public boolean registration(User newUser) {		
@@ -91,9 +91,9 @@ public class TXTFileUserDAO implements UserDAO{
 				return true;
 			} catch (IOException ex) {
 				System.out.println("Eror file database!");
+				return false;
 			}	
-		}
-		return false;
+		}		
 	}
 
 	/* 

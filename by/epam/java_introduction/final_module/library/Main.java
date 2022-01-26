@@ -1,13 +1,11 @@
 package by.epam.java_introduction.final_module.library;
 
-import by.epam.java_introduction.final_module.library.bean.Library;
-import by.epam.java_introduction.final_module.library.bean.User;
-import by.epam.java_introduction.final_module.library.controller.UserController;
-import by.epam.java_introduction.final_module.library.controller.ControllerProvider;
-import by.epam.java_introduction.final_module.library.controller.impl.UserControllerImpl;
-import by.epam.java_introduction.final_module.library.dao.impl.HomeLibraryDao;
-import by.epam.java_introduction.final_module.library.dao.impl.TXTFileUserDAO;
-import by.epam.java_introduction.final_module.library.presentation.ConsoleMenu;
+
+import java.util.List;
+
+import by.epam.java_introduction.final_module.library.bean.Book;
+import by.epam.java_introduction.final_module.library.presentation.MenuPresentation;
+import by.epam.java_introduction.final_module.library.service.impl.BookServiceImpl;
 
 /*
  * Cоздать консольное приложение “Учет книг в домашней библиотеке”.
@@ -32,9 +30,17 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
-		ConsoleMenu consoleMenu = new ConsoleMenu();
+		//BookServiceImpl bookServiceImpl = new BookServiceImpl();
+		//System.out.println(bookServiceImpl.findBookByAuthor("Emily Nagoski"));
+	//	List<Book> books = bookServiceImpl.getBooks();
 		
-		consoleMenu.startProgramm();
+		//System.out.println(books);
+		
+		//sout
+		
+		MenuPresentation menu = new MenuPresentation();
+		
+		menu.startProgramm();
 		
 		
 		

@@ -14,40 +14,33 @@ import by.epam.java_introduction.final_module.library.dao.LibraryDAO;
 public class HomeLibraryDao implements LibraryDAO{	
 	
 	public static String pathFileResource = "src/by/epam/java_introduction/final_module/library/resource/Library.book";
-	
-	
+		
 	@Override
-	public Library loadLibraryFromFile() {
+	public Library getLibrary() {
 		
 		Library library = null;
 		try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(pathFileResource))) {
-			library = (Library) objectInputStream.readObject();
-			
+			library = (Library) objectInputStream.readObject();			
 		} catch (ClassNotFoundException e) {			
 			e.printStackTrace();
 		} catch (IOException e) {			
 			e.printStackTrace();
 		}
 		
-		return library;
-		
-		
+		return library;	
 	}
+	
 
 	@Override
-	public void saveLibraryInFile(Library library) {
-		
+	public void setLibrary(Library library) {		
 		
 		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(pathFileResource))) {			
 			objectOutputStream.writeObject(library);
-		} catch (FileNotFoundException e) {
-			
+		} catch (FileNotFoundException e) {			
 			e.printStackTrace();
-		} catch (IOException e) {
-			
+		} catch (IOException e) {			
 			e.printStackTrace();
-		}
-        
+		}       
 		
 	}
 
