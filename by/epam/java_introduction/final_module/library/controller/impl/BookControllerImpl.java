@@ -3,30 +3,28 @@ package by.epam.java_introduction.final_module.library.controller.impl;
 import java.util.List;
 
 import by.epam.java_introduction.final_module.library.bean.Book;
-import by.epam.java_introduction.final_module.library.bean.User;
 import by.epam.java_introduction.final_module.library.controller.BookController;
 import by.epam.java_introduction.final_module.library.service.BookService;
 import by.epam.java_introduction.final_module.library.service.ServiceProvider;
 
 public class BookControllerImpl implements BookController{
+	
+	ServiceProvider provider = ServiceProvider.getInstance();
+	BookService bookService = provider.getBookService();
 
 	@Override
-	public List<Book> doAction(String request) {
-		
-		ServiceProvider provider = ServiceProvider.getInstance();
-		BookService bookService = provider.getBookService();
+	public List<Book> doAction(String request) {		
 		
 		List<Book> result = null;
 		String commandName;
 		String parameterToFind;
 		
-		commandName = request.split("=")[0];
-		
+		commandName = request.split("=")[0];		
 		
 		
 		switch(commandName) {
 		
-		case "printBooks":				
+		case "getBooks":				
 			result = bookService.getBooks();
 			break;
 			
@@ -44,10 +42,14 @@ public class BookControllerImpl implements BookController{
 			parameterToFind = request.split("=")[1]; 
 			result = bookService.findBookByYearPublishing(Integer.parseInt(parameterToFind));
 			break;
-				
+			
 		}
 		
 		return result;
 	}
+
+
+	
+	
 
 }

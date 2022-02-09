@@ -4,7 +4,9 @@ import by.epam.java_introduction.final_module.library.bean.User;
 
 public interface UserService {
 	
-	public boolean authorization(String login, String password);
-	public boolean registration(User user);
-
+	boolean authorization(String login, String password, boolean checkAdmin);	
+	boolean registration(User user);
+	boolean isEmptyLogin(String login);
+	boolean isCorrectEmail(String email);	
+	
 }

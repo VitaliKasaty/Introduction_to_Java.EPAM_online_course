@@ -4,9 +4,7 @@ package by.epam.java_introduction.final_module.library.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 import by.epam.java_introduction.final_module.library.bean.Book;
-
 import by.epam.java_introduction.final_module.library.dao.DAOProvider;
 import by.epam.java_introduction.final_module.library.dao.LibraryDAO;
 import by.epam.java_introduction.final_module.library.service.BookService;
@@ -23,15 +21,14 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public Book readBook(Book book) {
-		// TODO Auto-generated method stub
-		return null;
+	public Book getBook(int numBook) {		
+		return getBooks().get(numBook + 1);
 	}
 
 	@Override
 	public List<Book> findBookByAuthor(String author) {
 		List<Book> findByAuthorBooks;
-		findByAuthorBooks = getBooks().stream().filter(book -> book.getAuthor().equals(author)).collect(Collectors.toList());
+		findByAuthorBooks = getBooks().stream().filter(book -> book.getAuthor().equalsIgnoreCase(author)).collect(Collectors.toList());
 		return findByAuthorBooks;
 	}
 
@@ -45,13 +42,10 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<Book> findBookByTitle(String title) {
 		List<Book> findByAuthorBooks;
-		findByAuthorBooks = getBooks().stream().filter(book -> book.getTitle().equals(title)).collect(Collectors.toList());
+		findByAuthorBooks = getBooks().stream().filter(book -> book.getTitle().equalsIgnoreCase(title)).collect(Collectors.toList());
 		return findByAuthorBooks;
 	}
-
 	
-
-
 
 
 }

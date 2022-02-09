@@ -17,6 +17,10 @@ public class Library implements Serializable{
 		super();
 		this.libraryBooks = libraryBooks;
 	}
+	
+	public void addBook(Book Book) {
+		libraryBooks.add(Book);
+	}
 
 	public List<Book> getLibraryBooks() {
 		return libraryBooks;

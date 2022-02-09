@@ -29,10 +29,10 @@ public class TXTFileUserDAO implements UserDAO{
 			while(line != null) {				
 				String login = line.split(" ")[0];
 				String password = line.split(" ")[1];  
-				Boolean isAdmin = Boolean.parseBoolean(line.split(" ")[2]);
+				String email = line.split(" ")[2];
+				Boolean isAdmin = Boolean.parseBoolean(line.split(" ")[3]);
 				
-				User user = new User(login, password);
-				user.setAdmin(isAdmin);
+				User user = new User(login, password, email, isAdmin);				
 				users.add(user);
 				line = reader.readLine();
 			}
@@ -50,7 +50,7 @@ public class TXTFileUserDAO implements UserDAO{
 	public boolean isExistLoginUser(String login) {	
 		
 		for(User user : getUsers()) {
-			if(user.getLogin().contains(login)) {
+			if(user.getLogin().equalsIgnoreCase(login)) {
 				return true;
 			}
 		}
@@ -60,16 +60,36 @@ public class TXTFileUserDAO implements UserDAO{
 	/*
 	 * Метод авторизации: 
 	 * 	    получение списка пользователей; 
-	 * 	    сравнение логина и дешифрованного пароля из базы пользователей с введенными данными.
+	 * 	    сравнение логина и дешифрованного пароля из базы пользователей с введенными данными;
+	 *      авторизация как простых пользователей так и администраторов по флагу checkAdmin
 	 */		
 	@Override
-	public boolean authorization(String login, String password) {
+	public boolean authorization(String login, String password, boolean checkAdmin) {
 		
-		for(User user : getUsers()) {			
-			if(user.getLogin().equals(login) && decoder(user.getPassword()).equals(password)) {				
-				return true;
+		if(checkAdmin == false) {
+			
+//			if(login.equals("") && password.equals("")) {
+//				return false;
+//			}
+			
+			for(User user : getUsers()) {			
+				if((user.getLogin().equalsIgnoreCase(login)) && (decoder(user.getPassword()).equals(password)) && (!user.isAdmin())) {				
+					return true;
+				}
 			}
-		}		
+			
+		} else if(checkAdmin == true) {
+			
+//			if(login.equals("") && password.equals("")) {
+//				return false;
+//			}
+			
+			for(User user : getUsers()) {			
+				if((user.getLogin().equalsIgnoreCase(login)) && (decoder(user.getPassword()).equals(password)) && (user.isAdmin())) {				
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	
@@ -85,7 +105,7 @@ public class TXTFileUserDAO implements UserDAO{
 			return false;
 		} else {
 			try (FileWriter writer = new FileWriter(pathFileResource, true)) {
-				String text = newUser.getLogin() + " " + encoder(newUser.getPassword()) + " " + newUser.isAdmin() + "\n";
+				String text = newUser.getLogin() + " " + encoder(newUser.getPassword()) + " " + newUser.getEmail() + " " + newUser.isAdmin() + "\n";
 				writer.write(text);
 				writer.flush();				
 				return true;
@@ -123,6 +143,7 @@ public class TXTFileUserDAO implements UserDAO{
 		
 		return new String(decoderBytes);
 	}
+
 	
 
 }

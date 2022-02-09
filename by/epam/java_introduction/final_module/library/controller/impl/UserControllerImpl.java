@@ -17,21 +17,55 @@ public class UserControllerImpl implements UserController{
 		String commandName;
 		String login;
 		String password;
+		String email;
 		commandName = request.split(" ")[0];
-		login = request.split(" ")[1];
-		password = request.split(" ")[2];
+
 		
 		switch(commandName) {
 		
-			case "login":				
-				result = userService.authorization(login, password);
+			case "loginUser":
+				
+				if (request.split(" ").length < 3) {
+					return false;
+				}
+				login = request.split(" ")[1];
+				password = request.split(" ")[2];
+				result = userService.authorization(login, password, false);
+				break;
+				
+			case "loginAdmin":
+				
+				if (request.split(" ").length < 3) {
+					return false;
+				}
+				login = request.split(" ")[1];
+				password = request.split(" ")[2];
+				result = userService.authorization(login, password, true);
 				break;
 				
 			case "registration":
-				User newUser = new User(login, password);
+				
+				if (request.split(" ").length < 4) {
+					return false;
+				}
+				login = request.split(" ")[1];
+				password = request.split(" ")[2];				
+				email = request.split(" ")[3];
+				User newUser = new User(login, password, email);
 				result = userService.registration(newUser);
 				break;
 				
+			case "isEmptyLogin":
+				
+				login = request.split(" ")[1];
+				result = userService.isEmptyLogin(login);
+				break;
+				
+			case "isCorrectEmail":
+				
+				email = request.split(" ")[1];
+				result = userService.isCorrectEmail(email);
+				break;	
 		}
 		
 	return result;
