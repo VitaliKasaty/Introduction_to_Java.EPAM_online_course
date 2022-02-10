@@ -1,10 +1,10 @@
 package by.epam.java_introduction.final_module.library.controller.impl;
 
 import java.util.List;
-
 import by.epam.java_introduction.final_module.library.bean.Book;
 import by.epam.java_introduction.final_module.library.controller.BookController;
 import by.epam.java_introduction.final_module.library.service.BookService;
+import by.epam.java_introduction.final_module.library.service.ServiceException;
 import by.epam.java_introduction.final_module.library.service.ServiceProvider;
 
 public class BookControllerImpl implements BookController{
@@ -25,22 +25,40 @@ public class BookControllerImpl implements BookController{
 		switch(commandName) {
 		
 		case "getBooks":				
-			result = bookService.getBooks();
+			try {
+				result = bookService.getBooks();
+			} catch (ServiceException e) {
+				return null;
+			}
 			break;
 			
 		case "findByAuthor":
 			parameterToFind = request.split("=")[1]; 
-			result = bookService.findBookByAuthor(parameterToFind);
+			try {
+				result = bookService.findBookByAuthor(parameterToFind);
+			} catch (ServiceException e) {
+				return null;
+			}
 			break;
 			
 		case "findByTitle":	
 			parameterToFind = request.split("=")[1]; 
-			result = bookService.findBookByTitle(parameterToFind);
+			try {
+				result = bookService.findBookByTitle(parameterToFind);
+			} catch (ServiceException e) {
+				return null;
+			}
 			break;
 			
 		case "findByYear":
 			parameterToFind = request.split("=")[1]; 
-			result = bookService.findBookByYearPublishing(Integer.parseInt(parameterToFind));
+			try {
+				result = bookService.findBookByYearPublishing(Integer.parseInt(parameterToFind));
+			} catch (NumberFormatException e) {
+				return null;
+			} catch (ServiceException e) {
+				return null;
+			}
 			break;
 			
 		}

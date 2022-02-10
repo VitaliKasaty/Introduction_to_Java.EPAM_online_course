@@ -2,6 +2,7 @@ package by.epam.java_introduction.final_module.library.controller.impl;
 
 import by.epam.java_introduction.final_module.library.bean.User;
 import by.epam.java_introduction.final_module.library.controller.UserController;
+import by.epam.java_introduction.final_module.library.service.ServiceException;
 import by.epam.java_introduction.final_module.library.service.ServiceProvider;
 import by.epam.java_introduction.final_module.library.service.UserService;
 
@@ -23,42 +24,49 @@ public class UserControllerImpl implements UserController{
 		
 		switch(commandName) {
 		
-			case "loginUser":
-				
-				if (request.split(" ").length < 3) {
-					return false;
-				}
+			case "loginUser":				
+
 				login = request.split(" ")[1];
 				password = request.split(" ")[2];
+			try {
 				result = userService.authorization(login, password, false);
+			} catch (ServiceException e) {
+				return false;
+			}
 				break;
 				
-			case "loginAdmin":
-				
-				if (request.split(" ").length < 3) {
-					return false;
-				}
+			case "loginAdmin":		
+
 				login = request.split(" ")[1];
 				password = request.split(" ")[2];
+			try {
 				result = userService.authorization(login, password, true);
+			} catch (ServiceException e) {
+				return false;
+			}
 				break;
 				
-			case "registration":
-				
-				if (request.split(" ").length < 4) {
-					return false;
-				}
+			case "registration":				
+
 				login = request.split(" ")[1];
 				password = request.split(" ")[2];				
 				email = request.split(" ")[3];
 				User newUser = new User(login, password, email);
+			try {
 				result = userService.registration(newUser);
+			} catch (ServiceException e) {
+				return false;
+			}
 				break;
 				
 			case "isEmptyLogin":
 				
 				login = request.split(" ")[1];
+			try {
 				result = userService.isEmptyLogin(login);
+			} catch (ServiceException e) {
+				return false;
+			}
 				break;
 				
 			case "isCorrectEmail":

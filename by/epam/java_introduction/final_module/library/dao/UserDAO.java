@@ -6,12 +6,10 @@ import by.epam.java_introduction.final_module.library.bean.User;
 
 public interface UserDAO {
 	
-	List<User> getUsers();
-	boolean isExistLoginUser(String login);	
-	boolean authorization(String login, String password, boolean checkAdmin);
-	boolean registration(User newUser);	
-	String encoder(String text);
-	String decoder(String text);
+	List<User> getUsers() throws DAOException;
+	boolean authorization(String login, String password, boolean checkAdmin) throws DAOException;
+	boolean registration(User newUser) throws DAOException;
+	String md5Hash(String password) throws DAOException;
 	
 
 }

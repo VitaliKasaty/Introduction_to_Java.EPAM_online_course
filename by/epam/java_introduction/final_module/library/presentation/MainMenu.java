@@ -35,7 +35,7 @@ public class MainMenu {
 							System.out.println("Авторизация прошла успешно.\n");
 							userOption.menu();
 						} else {
-							System.out.println("Введены неверные данные.\n");
+							System.out.println("Ошибка входа.\n");
 						}
 						break;
 						
@@ -53,7 +53,7 @@ public class MainMenu {
 							System.out.println("Вы авторизовались как администратор.\n");
 							adminOption.menu();
 						} else {
-							System.out.println("Введены неверные данные.\n");
+							System.out.println("Ошибка входа.\n");
 						}						
 						break;
 						

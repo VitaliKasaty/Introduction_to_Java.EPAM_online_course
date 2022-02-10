@@ -7,7 +7,6 @@ import by.epam.java_introduction.final_module.library.bean.Book;
 import by.epam.java_introduction.final_module.library.controller.BookController;
 import by.epam.java_introduction.final_module.library.controller.ControllerProvider;
 import by.epam.java_introduction.final_module.library.controller.LibraryController;
-//import by.epam.java_introduction.final_module.library.controller.LibraryController;
 import by.epam.java_introduction.final_module.library.controller.UserController;
 
 public class UserOption {
@@ -79,7 +78,7 @@ public class UserOption {
 				""";
 		
 		boolean isAuthInReadingRoom = true;
-		String userInput = "";
+		
 		int numBook;
 		
 		while (isAuthInReadingRoom) {
@@ -92,13 +91,13 @@ public class UserOption {
 					print.readBook(books.get(numBook - 1));
 				}
 				sc.nextLine();
-			} else {
-				System.out.println("Такой команды нет.");
-				userInput = sc.nextLine();
-			}
-			if (userInput.equals("back")) {
+			} else if (sc.nextLine().equals("back")) {
 				isAuthInReadingRoom = false;
+			} else {
+				System.out.println("Такой команды нет.\n");
+				//sc.nextLine();
 			}
+			
 		}	
 	}
 	

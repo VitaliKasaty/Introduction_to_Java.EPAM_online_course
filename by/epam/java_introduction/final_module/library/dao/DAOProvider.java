@@ -1,14 +1,14 @@
 package by.epam.java_introduction.final_module.library.dao;
 
-import by.epam.java_introduction.final_module.library.dao.impl.HomeLibraryDao;
-import by.epam.java_introduction.final_module.library.dao.impl.TXTFileUserDAO;
+import by.epam.java_introduction.final_module.library.dao.impl.LibraryDaoImpl;
+import by.epam.java_introduction.final_module.library.dao.impl.UserDAOImpl;
 
 public final class DAOProvider {
 	
 	private static final DAOProvider instance = new DAOProvider();
 	
-	private UserDAO userDAO = new TXTFileUserDAO();
-	private LibraryDAO libraryDAO = new HomeLibraryDao(); 
+	private UserDAO userDAO = new UserDAOImpl();
+	private LibraryDAO libraryDAO = new LibraryDaoImpl(); 
 	
 	private DAOProvider() {
 		

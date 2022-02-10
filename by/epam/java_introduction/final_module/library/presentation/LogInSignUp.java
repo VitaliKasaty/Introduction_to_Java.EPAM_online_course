@@ -9,6 +9,8 @@ public class LogInSignUp {
 	
 	ControllerProvider controllerProvider = ControllerProvider.getInstance();	
 	UserController userController = controllerProvider.getUserController();
+	
+	
 	Scanner sc = new Scanner(System.in);
 	
 	public boolean authorization(String typeUser) {
