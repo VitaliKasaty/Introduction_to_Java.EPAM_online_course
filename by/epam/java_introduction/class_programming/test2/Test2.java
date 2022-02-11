@@ -1,4 +1,4 @@
-package by.epam.java_introduction.class_programming;
+package by.epam.java_introduction.class_programming.test2;
 
 //Создйте класс Test2 c двумя переменными. Добавьте конструктор с входными параметрами. Добавьте
 //конструктор, инициализирующий члены класса по умолчанию. Добавьте set- и get- методы для полей экземпляра
