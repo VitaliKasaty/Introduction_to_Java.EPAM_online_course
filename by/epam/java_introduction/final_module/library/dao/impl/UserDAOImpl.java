@@ -17,16 +17,13 @@ import by.epam.java_introduction.final_module.library.dao.UserDAO;
 public class UserDAOImpl implements UserDAO{		
 	
 	public static String pathFileResource = "src/by/epam/java_introduction/final_module/library/resource/Users.txt";	
-	
-	/*
-	 * возвращает список пользователей
-	 * пользователи считываются из файла Users.txt	 
-	 */	
+
 	public  List<User> getUsers() throws DAOException{ 
 		
 		List<User> users = new ArrayList<>();
 		
-		try(BufferedReader reader = new BufferedReader(new FileReader(pathFileResource))) {	
+		try(BufferedReader reader = new BufferedReader(new FileReader(pathFileResource))) {
+			
 			String line = reader.readLine();
 			
 			while(line != null) {				
@@ -44,14 +41,8 @@ public class UserDAOImpl implements UserDAO{
 			throw new DAOException("Eror file database!", e);			
 		}		
 		return users;
-	}
-	
-	/* ***********************************************************************************
-	 * Метод авторизации: ******************************************************************************************
-	 * 	    получение списка пользователей; 
-	 * 	    сравнение логина и дешифрованного пароля из базы пользователей с введенными данными;
-	 *      авторизация как простых пользователей так и администраторов по флагу checkAdmin
-	 */		
+	}	
+		
 	@Override
 	public boolean authorization(String login, String password, boolean checkAdmin) throws DAOException {
 		
@@ -69,13 +60,8 @@ public class UserDAOImpl implements UserDAO{
 			}
 		}
 		return false;
-	}
-	
-	/*
-	 * Метод регистрации пользователей: 
-	 * 		проверка на свободность логина; 
-	 * 		запись нового пользователя в базу текстового файла, пароль шифруется
-	 */
+	}	
+
 	@Override
 	public boolean registration(User newUser) throws DAOException {			
 		
@@ -113,5 +99,6 @@ public class UserDAOImpl implements UserDAO{
 		 
 		return md5Hex;
 	}
+	
 
 }

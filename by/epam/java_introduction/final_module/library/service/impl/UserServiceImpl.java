@@ -14,9 +14,10 @@ public class UserServiceImpl implements UserService{
 	private final DAOProvider provider = DAOProvider.getInstance();
 
 	@Override
-	public boolean authorization(String login, String password, boolean checkAdmin) throws ServiceException{
+	public boolean authorization(String login, String password, boolean checkAdmin) throws ServiceException {
 		UserDAO userDAO = provider.getUserDAO();
 		boolean result = false;
+		
 		try {
 			result = userDAO.authorization(login, password, checkAdmin);
 		} catch (DAOException e) {
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService{
 	public boolean registration(User user) throws ServiceException {
 		UserDAO userDAO = provider.getUserDAO();
 		boolean result = false;
+		
 		try {
 			result = userDAO.registration(user);
 		} catch (DAOException e) {
@@ -41,6 +43,7 @@ public class UserServiceImpl implements UserService{
 	public boolean isEmptyLogin(String login) throws ServiceException {		
 		UserDAO userDAO = provider.getUserDAO();
 		List<User> users = null;
+		
 		try {
 			users = userDAO.getUsers();
 		} catch (DAOException e) {
@@ -59,6 +62,7 @@ public class UserServiceImpl implements UserService{
 	public boolean isEmptyEmail(String email) throws ServiceException {
 		UserDAO userDAO = provider.getUserDAO();
 		List<User> users = null;
+		
 		try {
 			users = userDAO.getUsers();
 		} catch (DAOException e) {

@@ -61,9 +61,6 @@ public class ElectronicBook extends Book{
 	public String toString() {
 		return "ElectronicBook [urlAdress=" + urlAdress + ", getTitle()=" + getTitle() + ", getAuthor()=" + getAuthor()
 				+ ", getYearPublishing()=" + getYearPublishing() + "]";
-	}
-
-	
-	
+	}	
 
 }

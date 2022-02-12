@@ -11,8 +11,7 @@ public class User implements Serializable{
 	private String email;
 	private boolean isAdmin;
 	
-	public User() {
-		
+	public User() {		
 	}
 
 	public User(String login, String password, String email) {		
@@ -108,8 +107,6 @@ public class User implements Serializable{
 	@Override
 	public String toString() {
 		return "User [login=" + login + ", email=" + email + "]";
-	}
-
-	
+	}	
 
 }

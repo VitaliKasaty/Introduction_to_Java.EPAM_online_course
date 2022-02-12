@@ -24,47 +24,39 @@ public class LibraryControllerImpl implements LibraryController{
 	}
 
 	@Override
-	public boolean addBook(Book newBook) {		
-		boolean result;		
+	public boolean addBook(Book newBook) {
 		try {
-			result = libraryService.addBook(newBook);
+			return libraryService.addBook(newBook);
+		} catch (ServiceException e) {
+			return false;
+		}	
+	}
+
+	@Override
+	public boolean editBook(int numBook, Book editedBook) {		
+		try {
+			return libraryService.editBook(numBook, editedBook);
 		} catch (ServiceException e) {
 			return false;
 		}		
-		return result;
 	}
 
 	@Override
-	public boolean editBook(int numBook, Book editedBook) {
-		boolean result;
+	public boolean deleteBook(int numBook) {			
 		try {
-			result = libraryService.editBook(numBook, editedBook);
+			return libraryService.deleteBook(numBook);
 		} catch (ServiceException e) {
 			return false;
-		}
-		return result;
+		}		
 	}
 
 	@Override
-	public boolean deleteBook(int numBook) {
-		boolean result;		
+	public boolean sendEmailNotification(String heading, String text) {			
 		try {
-			result = libraryService.deleteBook(numBook);
+			return libraryService.sendEmailNotification(heading, text);
 		} catch (ServiceException e) {
 			return false;
-		}
-		return result;
-	}
-
-	@Override
-	public boolean sendEmailNotification(String heading, String text) {
-		boolean result;		
-		try {
-			result = libraryService.sendEmailNotification(heading, text);
-		} catch (ServiceException e) {
-			return false;
-		}
-		return result;		
+		}			
 	}
 
 }

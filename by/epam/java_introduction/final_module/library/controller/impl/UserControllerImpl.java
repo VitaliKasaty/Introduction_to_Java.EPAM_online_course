@@ -20,63 +20,69 @@ public class UserControllerImpl implements UserController{
 		String password;
 		String email;
 		commandName = request.split(" ")[0];
-
 		
 		switch(commandName) {
 		
-			case "loginUser":				
-
+			case "loginUser":
 				login = request.split(" ")[1];
 				password = request.split(" ")[2];
-			try {
-				result = userService.authorization(login, password, false);
-			} catch (ServiceException e) {
-				return false;
-			}
+				
+				try {
+					result = userService.authorization(login, password, false);
+				} catch (ServiceException e) {
+					return false;
+				}				
 				break;
 				
-			case "loginAdmin":		
-
+			case "loginAdmin":
 				login = request.split(" ")[1];
 				password = request.split(" ")[2];
-			try {
-				result = userService.authorization(login, password, true);
-			} catch (ServiceException e) {
-				return false;
-			}
+				
+				try {
+					result = userService.authorization(login, password, true);
+				} catch (ServiceException e) {
+					return false;
+				}				
 				break;
 				
-			case "registration":				
-
+			case "registration":
 				login = request.split(" ")[1];
 				password = request.split(" ")[2];				
 				email = request.split(" ")[3];
 				User newUser = new User(login, password, email);
-			try {
-				result = userService.registration(newUser);
-			} catch (ServiceException e) {
-				return false;
-			}
+				
+				try {
+					result = userService.registration(newUser);
+				} catch (ServiceException e) {
+					return false;
+				}				
 				break;
 				
-			case "isEmptyLogin":
-				
+			case "isEmptyLogin":				
 				login = request.split(" ")[1];
-			try {
-				result = userService.isEmptyLogin(login);
-			} catch (ServiceException e) {
-				return false;
-			}
+				try {
+					result = userService.isEmptyLogin(login);
+				} catch (ServiceException e) {
+					return false;
+				}				
 				break;
 				
-			case "isCorrectEmail":
+			case "isEmptyEmail":				
+				email = request.split(" ")[1];
+				try {
+					result = userService.isEmptyEmail(email);
+				} catch (ServiceException e) {
+					return false;
+				}				
+				break;
 				
+			case "isCorrectEmail":				
 				email = request.split(" ")[1];
 				result = userService.isCorrectEmail(email);
-				break;	
+				break;
+				
 		}
 		
-	return result;
-	
+		return result;
 	}
 }

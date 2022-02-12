@@ -9,8 +9,6 @@ public class LogInSignUp {
 	
 	ControllerProvider controllerProvider = ControllerProvider.getInstance();	
 	UserController userController = controllerProvider.getUserController();
-	
-	
 	Scanner sc = new Scanner(System.in);
 	
 	public boolean authorization(String typeUser) {
@@ -21,9 +19,10 @@ public class LogInSignUp {
 		String login = sc.nextLine();
 		System.out.println("Введите пароль");
 		String password = sc.nextLine(); 
-		if(typeUser.equals("user")) {
+		
+		if (typeUser.equals("user")) {
 			isEntered =  userController.doAction("loginUser " + login + " " + password);
-		} else if(typeUser.equals("admin")) {
+		} else if (typeUser.equals("admin")) {
 			isEntered =  userController.doAction("loginAdmin " + login + " " + password);
 		}
 		
@@ -36,15 +35,18 @@ public class LogInSignUp {
 		String login;
 		String email;
 		boolean isEmptyLogin;
+		boolean isEmptyEmail;
 		boolean isCorrectEmail;
 		
 		do {		
 			System.out.println("Введите логин");
 			login = sc.nextLine();
 			isEmptyLogin = userController.doAction("isEmptyLogin " + login);
+			
 			if (!isEmptyLogin) {
 				System.out.println("Имя пользователя занято. Повторите ввод.");				
 			}
+			
 		} while (!isEmptyLogin);
 		
 		System.out.println("Введите пароль");
@@ -54,10 +56,13 @@ public class LogInSignUp {
 			System.out.println("Введите email");
 			email = sc.nextLine();
 			isCorrectEmail = userController.doAction("isCorrectEmail " + email);
-			if (!isCorrectEmail) {
-				System.out.println("Некорректный email адрес. Повторите ввод.");				
+			isEmptyEmail = userController.doAction("isEmptyEmail " + email);
+			
+			if (!isCorrectEmail || !isEmptyEmail) {
+				System.out.println("Email адрес некорректный либо занят. Повторите ввод.");				
 			}
-		} while (!isCorrectEmail);
+			
+		} while (!isCorrectEmail || !isEmptyEmail);
 		
 		isRegistrated =  userController.doAction("registration " + login + " " + password + " " + email); 
 		

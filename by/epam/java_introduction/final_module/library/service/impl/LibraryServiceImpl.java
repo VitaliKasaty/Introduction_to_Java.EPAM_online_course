@@ -1,9 +1,7 @@
 package by.epam.java_introduction.final_module.library.service.impl;
 
-
 import java.util.List;
 import java.util.Properties;
-
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -29,7 +27,7 @@ public class LibraryServiceImpl implements LibraryService{
 	private final DAOProvider provider = DAOProvider.getInstance();
 
 	@Override
-	public Library getLibrary() throws ServiceException {		
+	public Library getLibrary() throws ServiceException {			
 		LibraryDAO libraryDAO = provider.getLibraryDAO();
 		try {
 			return libraryDAO.getLibrary();
@@ -45,8 +43,7 @@ public class LibraryServiceImpl implements LibraryService{
 			return libraryDAO.saveLibrary(library);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
-		}
-		
+		}		
 	}
 
 	@Override
@@ -54,13 +51,14 @@ public class LibraryServiceImpl implements LibraryService{
 		
 		UserDAO userDAO = provider.getUserDAO();		
 		List<User> users;
+		
 		try {
 			users = userDAO.getUsers();
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-		String adminEmail = null;
 		
+		String adminEmail = null;		
 		for (User user : users) {
 			if (user.getLogin().equals("admin")) {
 				adminEmail = user.getEmail();				
@@ -73,10 +71,10 @@ public class LibraryServiceImpl implements LibraryService{
 		properties.put("mail.smtp.starttls.enable", "true");	   
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587");
-		 
+		
 		String libraryEmail = getLibraryEmailData()[0];
 		String libraryPassword = getLibraryEmailData()[1];
-		 
+		
 		Session session = Session.getInstance(properties, new Authenticator() {			   
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {			
@@ -84,7 +82,7 @@ public class LibraryServiceImpl implements LibraryService{
 			}
 		}); 		 
 		 
-		Message message = new MimeMessage(session);		
+		Message message = new MimeMessage(session);			
 		try {				
 			message.setFrom(new InternetAddress(libraryEmail));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(adminEmail));
@@ -139,11 +137,13 @@ public class LibraryServiceImpl implements LibraryService{
 		boolean result = false;
 		LibraryDAO libraryDAO = provider.getLibraryDAO();
 		Library library;
+		
 		try {
 			library = libraryDAO.getLibrary();
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
+		
 		library.getLibraryBooks().remove(numBook);
 		result = saveLibrary(library);
 		return result;
@@ -154,6 +154,7 @@ public class LibraryServiceImpl implements LibraryService{
 		
 		UserDAO userDAO = provider.getUserDAO();		
 		List<User> users;
+		
 		try {
 			users = userDAO.getUsers();
 		} catch (DAOException e) {
@@ -189,6 +190,7 @@ public class LibraryServiceImpl implements LibraryService{
 				}
 			}
 			
+			
 			return true;
 		} catch (AddressException e) {			
 			throw new ServiceException(e);
@@ -201,6 +203,7 @@ public class LibraryServiceImpl implements LibraryService{
 	public String[] getLibraryEmailData() throws ServiceException {
 		LibraryDAO libraryDAO = provider.getLibraryDAO();
 		String[] result = null;
+		
 		try {
 			result = libraryDAO.getLibraryEmail();
 		} catch (DAOException e) {
@@ -208,5 +211,6 @@ public class LibraryServiceImpl implements LibraryService{
 		}
 		return result;
 	}
+	
 
 }

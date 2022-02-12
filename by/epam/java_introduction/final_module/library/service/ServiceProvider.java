@@ -13,8 +13,7 @@ public class ServiceProvider {
 	private final BookService bookService = new BookServiceImpl();	
 	
 
-	private ServiceProvider() {
-		
+	private ServiceProvider() {		
 	}
 	
 	public LibraryService getLibraryService() {
@@ -32,8 +31,5 @@ public class ServiceProvider {
 	public UserService getUserService() {
 		return userService;
 	}
-	
-	
-	
 
 }

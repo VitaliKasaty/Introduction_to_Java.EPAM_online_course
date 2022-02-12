@@ -10,8 +10,7 @@ public final class DAOProvider {
 	private UserDAO userDAO = new UserDAOImpl();
 	private LibraryDAO libraryDAO = new LibraryDaoImpl(); 
 	
-	private DAOProvider() {
-		
+	private DAOProvider() {		
 	}
 	
 	public static DAOProvider getInstance() {
@@ -32,8 +31,6 @@ public final class DAOProvider {
 
 	public void setLibraryDAO(LibraryDAO libraryDAO) {
 		this.libraryDAO = libraryDAO;
-	}	
-	
-	
+	}
 
 }

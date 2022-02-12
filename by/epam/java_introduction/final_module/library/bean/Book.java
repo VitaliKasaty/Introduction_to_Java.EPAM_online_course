@@ -10,8 +10,7 @@ public abstract class Book implements Serializable{
 	private String author;
 	private int yearPublishing;
 	
-	public Book() {
-		
+	public Book() {		
 	}
 	
 	public Book(String title, String author, int yearPublishing) {		
@@ -24,7 +23,7 @@ public abstract class Book implements Serializable{
 		return title;
 	}
 
-	public void setTritle(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 

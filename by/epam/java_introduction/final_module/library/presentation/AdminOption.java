@@ -28,57 +28,58 @@ public class AdminOption {
 				""";
 		boolean isAuthInLibrary = true;
 		
-		while(isAuthInLibrary) {
+		while (isAuthInLibrary) {
 			System.out.println(optionInLibrary);
 			String userInput = sc.nextLine();
 			
-			switch(userInput) {
+			switch (userInput) {
 			
-			case "1":				
-				if(addBook()) {
-					System.out.println("Книга успешно добавлена. Пользователям отправлено сообщение о пуступлении книги.\n");
-				} else {
-					System.out.println("Произошла ошибка либо операция была отменена.\n");
-				}
-				break;
-				
-			case "2":
-				if (deletebook()) {
-					System.out.println("Книга успешно удалена.\n");
-				} else {
-					System.out.println("Произошла ошибка либо операция была отменена.\n");
-				}
-				break;
-				
-			case "3":
-				isAuthInLibrary = false;
-				break;				
+				case "1":				
+					if (addBook()) {
+						System.out.println("Книга успешно добавлена. Пользователям отправлено сообщение о пуступлении книги.\n");
+					} else {
+						System.out.println("Произошла ошибка либо операция была отменена.\n");
+					}
+					break;
+					
+				case "2":
+					if (deletebook()) {
+						System.out.println("Книга успешно удалена.\n");
+					} else {
+						System.out.println("Произошла ошибка либо операция была отменена.\n");
+					}
+					break;
+					
+				case "3":
+					isAuthInLibrary = false;
+					break;				
 			}		
 		}
 	}
 	
 	public boolean deletebook() {	
 		
-		String typeMenu = "Введите номер книги для удаления, чтобы вернуться назад введите \"back\".\n";		
-
+		String typeMenu = "Введите номер книги для удаления, чтобы вернуться назад введите \"back\".\n";
 		int numBook;
 		List<Book> books;
 		
 		while (true) {
+			
 			books = bookController.doAction("getBooks");
 			print.printBooks(books);
 			System.out.println(typeMenu);
+			
 			if (sc.hasNextInt()) {
 				numBook = sc.nextInt();
-				if (numBook > books.size() || numBook < 1) {
-					System.out.println("Книги с таким номером не существует.\n");
-					
+				if ((numBook > books.size()) || (numBook < 1)) {
+					System.out.println("Книги с таким номером не существует.\n");					
 				} else {
 					libraryController.deleteBook(numBook - 1);	
 					sc.nextLine();
 					return true;					
 				}
 				sc.nextLine();
+				
 			} else if (sc.nextLine().equals("back")) {				
 				return false;
 			} else {				
@@ -103,11 +104,12 @@ public class AdminOption {
 		String author = "";
 		int yearPublishing = 0;
 		
-		while(!isCorrectType) {
+		while (!isCorrectType) {
+			
 			System.out.println(typeMenu);
 			String userInput = sc.nextLine();
 			
-			switch(userInput) {
+			switch (userInput) {
 			
 				case "1":
 					typeBook = 1;
@@ -128,16 +130,18 @@ public class AdminOption {
 			}			
 		}
 		
-		if (typeBook == 1 || typeBook == 2) {
-				
+		if (typeBook == 1 || typeBook == 2) {	
+			
 			System.out.println("Введите название:");
 			title = sc.nextLine();
 			System.out.println("Введите автора:");
 			author = sc.nextLine();
 			System.out.println("Введите год издания:");
-			while(!sc.hasNextInt()) {
+			
+			while (!sc.hasNextInt()) {
 				System.out.println("Должно быть число");
 			}
+			
 			yearPublishing = sc.nextInt();
 			sc.nextLine();
 				
@@ -152,16 +156,15 @@ public class AdminOption {
 						text = text.trim();
 						break;
 					}				
-				}			
-					
-				book = new PaperBook(title, author, yearPublishing, text);
-				 
+				}	
+				book = new PaperBook(title, author, yearPublishing, text);				 
 			} else {
 				System.out.println("Введети url адресс книги");
 				String urlAdress = sc.nextLine();
 				book = new ElectronicBook(title, author, yearPublishing, urlAdress);
 			}
-		}	
+		}
+		
 		if (libraryController.addBook(book)) {
 			String text = "Was added book: " + title + " by " + author + ", " + yearPublishing + ".";
 			libraryController.sendEmailNotification("New book in HomeLibrary", text);
@@ -169,8 +172,7 @@ public class AdminOption {
 		} else {
 			return false;
 		}
-		
-		
 	}
+	
 
 }

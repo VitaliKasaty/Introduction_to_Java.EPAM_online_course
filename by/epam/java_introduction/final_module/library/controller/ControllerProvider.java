@@ -12,8 +12,7 @@ public class ControllerProvider {
 	private LibraryController libraryController = new LibraryControllerImpl();
 	private BookController bookController = new BookControllerImpl();
 	
-	private ControllerProvider() {
-		
+	private ControllerProvider() {		
 	}
 
 	public LibraryController getLibraryController() {
@@ -43,9 +42,5 @@ public class ControllerProvider {
 	public void setBookController(BookController bookController) {
 		this.bookController = bookController;
 	}
-
-	
-	
-	
 
 }
